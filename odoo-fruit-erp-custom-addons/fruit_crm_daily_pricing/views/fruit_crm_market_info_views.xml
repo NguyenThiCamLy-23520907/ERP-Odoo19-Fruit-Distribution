@@ -1,0 +1,91 @@
+<odoo>
+    <record id="view_fruit_crm_market_info_form" model="ir.ui.view">
+        <field name="name">fruit.crm.market.info.form</field>
+        <field name="model">fruit.crm.market.info</field>
+        <field name="arch" type="xml">
+            <form string="Fruit Market Information">
+                <header>
+                    <button name="action_sync_price_from_github" 
+                            string="Đồng bộ giá từ Sàn" 
+                            type="object" 
+                            class="oe_highlight" 
+                            icon="fa-cloud-download"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="CRM Source">
+                            <field name="name"/>
+                            <field name="lead_id"/>
+                            <field name="partner_id"/>
+                            <field name="salesperson_id"/>
+                            <field name="sales_team_id"/>
+                        </group>
+
+                        <group string="Market Info">
+                            <field name="info_date"/>
+                            <field name="expected_delivery_date"/>
+                            <field name="region"/>
+                            <field name="state"/>
+                            <field name="price_board_id" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Product Demand">
+                            <field name="product_id"/>
+                            <field name="grade"/>
+                            <field name="expected_qty"/>
+                            <field name="uom_id"/>
+                        </group>
+
+                        <group string="Price Signals">
+                            <field name="customer_target_price"/>
+                            <field name="competitor_price"/>
+                            <field name="market_demand_level"/>
+                            <field name="confidence"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fruit_crm_market_info_tree" model="ir.ui.view">
+        <field name="name">fruit.crm.market.info.list</field>
+        <field name="model">fruit.crm.market.info</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="info_date"/>
+                <field name="lead_id"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="grade"/>
+                <field name="expected_qty"/>
+                <field name="customer_target_price"/>
+                <field name="competitor_price"/>
+                <field name="market_demand_level"/>
+                <field name="confidence"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_fruit_crm_market_info" model="ir.actions.act_window">
+        <field name="name">Market Information</field>
+        <field name="res_model">fruit.crm.market.info</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_fruit_crm_market_info"
+              name="Market Information"
+              parent="menu_fruit_crm_daily_pricing_root"
+              action="action_fruit_crm_market_info"
+              sequence="10"/>
+</odoo>

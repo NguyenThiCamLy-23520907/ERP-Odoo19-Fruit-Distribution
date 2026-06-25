@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_fruit_operations_root"
+              name="Fruit Operations"
+              parent="stock.menu_stock_root"
+              sequence="90"/>
+</odoo>

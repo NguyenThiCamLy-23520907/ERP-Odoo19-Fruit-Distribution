@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fruit_daily_price_board_form" model="ir.ui.view">
+        <field name="name">fruit.daily.price.board.form</field>
+        <field name="model">fruit.daily.price.board</field>
+        <field name="arch" type="xml">
+            <form string="Daily Fruit Price Board">
+                <header>
+                    <button name="action_generate_from_crm"
+                            type="object"
+                            string="Generate From CRM"
+                            class="btn-primary"
+                            invisible="state not in ['draft', 'generated']"/>
+
+                    <button name="action_confirm"
+                            type="object"
+                            string="Confirm"
+                            class="btn-secondary"
+                            invisible="state not in ['generated']"/>
+
+                    <button name="action_send_to_sales"
+                            type="object"
+                            string="Send to Sales"
+                            class="btn-secondary"
+                            invisible="state not in ['generated', 'confirmed', 'applied']"/>
+
+                    <button name="action_apply_to_pricelist"
+                            type="object"
+                            string="Apply to Pricelist"
+                            class="btn-primary"
+                            invisible="state not in ['generated', 'confirmed', 'sent']"/>
+
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            invisible="state in ['cancelled']"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,generated,confirmed,applied"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="state != 'draft'" placeholder="Ví dụ: Bảng giá thị trường ngày 23/05"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Board Information">
+                            <field name="price_date" readonly="state != 'draft'"/>
+                            <field name="sales_team_id" readonly="state != 'draft'"/>
+                            <field name="product_categ_id" readonly="state != 'draft'"/>
+                            <field name="target_margin_percent" readonly="state != 'draft'"/>
+                        </group>
+
+                        <group string="Sales Connection">
+                            <field name="pricelist_id" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Daily Price Lines">
+                            <field name="line_ids" readonly="state in ['confirmed', 'applied', 'cancelled']">
+                                <list editable="bottom" decoration-danger="product_id == False">
+                                    <field name="product_id" options="{'no_create': True}"/>
+                                    <field name="grade"/>
+                                    <field name="total_crm_demand_qty" sum="Tổng sản lượng dự kiến"/>
+                                    <field name="market_info_count"/>
+                                    <field name="avg_competitor_price" string="Giá đối thủ (Crawl)" readonly="1"/>
+                                    <field name="avg_customer_target_price" string="Giá kỳ vọng khách" readonly="1"/>
+                                    <field name="current_cost" readonly="1"/>
+                                    <field name="target_margin_percent"/>
+                                    <field name="demand_adjustment"/>
+                                    <field name="suggested_price" readonly="1"/>
+                                    
+                                    <field name="final_price" string="Giá chốt báo giá" class="oe_inline"/>
+                                    
+                                    <field name="margin_percent" readonly="1"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Note">
+                            <field name="note" placeholder="Ghi chú nội bộ cho bảng giá hôm nay..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fruit_daily_price_board_tree" model="ir.ui.view">
+        <field name="name">fruit.daily.price.board.tree</field>
+        <field name="model">fruit.daily.price.board</field>
+        <field name="arch" type="xml">
+            <list string="Daily Fruit Price Boards">
+                <field name="name"/>
+                <field name="price_date"/>
+                <field name="sales_team_id"/>
+                <field name="target_margin_percent"/>
+                <field name="pricelist_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'generated'" decoration-success="state in ['confirmed', 'applied']"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_fruit_daily_price_board" model="ir.actions.act_window">
+        <field name="name">Daily Price Boards</field>
+        <field name="res_model">fruit.daily.price.board</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a daily fruit price board from CRM market information.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_fruit_daily_price_board"
+              name="Daily Price Boards"
+              parent="menu_fruit_crm_daily_pricing_root"
+              action="action_fruit_daily_price_board"
+              sequence="20"/>
+</odoo>

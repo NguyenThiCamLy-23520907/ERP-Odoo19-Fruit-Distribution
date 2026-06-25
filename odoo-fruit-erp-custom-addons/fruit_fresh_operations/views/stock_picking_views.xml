@@ -1,0 +1,30 @@
+<odoo>
+    <record id="view_picking_form_fruit_qc" model="ir.ui.view">
+        <field name="name">stock.picking.form.fruit.qc</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_create_fruit_qc_check"
+                        type="object"
+                        string="Create QC Check"
+                        class="btn-primary"
+                        invisible="picking_type_code != 'incoming'"/>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_fruit_qc_checks"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-check-square-o"
+                            invisible="fruit_qc_count == 0">
+                        <field name="fruit_qc_count" widget="statinfo" string="QC Checks"/>
+                    </button>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

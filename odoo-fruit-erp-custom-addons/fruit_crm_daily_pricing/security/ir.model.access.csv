@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fruit_crm_market_info_user,access.fruit.crm.market.info.user,model_fruit_crm_market_info,base.group_user,1,1,1,1
+access_fruit_daily_price_board_user,access.fruit.daily.price.board.user,model_fruit_daily_price_board,base.group_user,1,1,1,1
+access_fruit_daily_price_board_line_user,access.fruit.daily.price.board.line.user,model_fruit_daily_price_board_line,base.group_user,1,1,1,1

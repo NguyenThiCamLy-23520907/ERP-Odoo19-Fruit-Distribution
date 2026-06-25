@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="menu_fruit_crm_daily_pricing_root"
+              name="Fruit Daily Pricing"
+              sequence="85"/>
+</odoo>

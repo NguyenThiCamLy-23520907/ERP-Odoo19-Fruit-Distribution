@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fruit_qc_check_user,fruit.qc.check.user,model_fruit_qc_check,base.group_user,1,1,1,1
+access_fruit_wastage_log_user,fruit.wastage.log.user,model_fruit_wastage_log,base.group_user,1,1,1,1
+access_fruit_daily_closing_user,fruit.daily.closing.user,model_fruit_daily_closing_report,base.group_user,1,1,1,1
+access_fefo_suggestion_wizard_user,fruit.fefo.suggestion.wizard.user,model_fruit_fefo_suggestion_wizard,base.group_user,1,1,1,1
+access_fefo_suggestion_line_user,fruit.fefo.suggestion.line.user,model_fruit_fefo_suggestion_line,base.group_user,1,1,1,1

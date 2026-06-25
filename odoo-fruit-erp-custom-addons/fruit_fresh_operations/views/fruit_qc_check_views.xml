@@ -1,0 +1,84 @@
+<odoo>
+    <record id="view_fruit_qc_check_form" model="ir.ui.view">
+        <field name="name">fruit.qc.check.form</field>
+        <field name="model">fruit.qc.check</field>
+        <field name="arch" type="xml">
+            <form string="Fruit QC Check">
+                <header>
+                    <button name="action_confirm_qc"
+                            type="object"
+                            string="Confirm QC"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="qc_date"/>
+                            <field name="picking_id"/>
+                            <field name="supplier_id"/>
+                            <field name="inspector_id"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="lot_id"/>
+                            <field name="received_qty"/>
+                            <field name="accepted_qty"/>
+                            <field name="rejected_qty"/>
+                            <field name="damaged_weight"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="qc_result"/>
+                        <field name="action_required"/>
+                        <field name="accepted_location_id"/>
+                        <field name="rejected_location_id"/>
+                        <field name="wastage_log_id" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fruit_qc_check_tree" model="ir.ui.view">
+        <field name="name">fruit.qc.check.tree</field>
+        <field name="model">fruit.qc.check</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="qc_date"/>
+                <field name="picking_id"/>
+                <field name="supplier_id"/>
+                <field name="product_id"/>
+                <field name="lot_id"/>
+                <field name="received_qty"/>
+                <field name="accepted_qty"/>
+                <field name="rejected_qty"/>
+                <field name="qc_result"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_fruit_qc_check" model="ir.actions.act_window">
+        <field name="name">QC Checks</field>
+        <field name="res_model">fruit.qc.check</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_fruit_qc_check"
+              name="QC Checks"
+              parent="menu_fruit_operations_root"
+              action="action_fruit_qc_check"
+              sequence="10"/>
+</odoo>

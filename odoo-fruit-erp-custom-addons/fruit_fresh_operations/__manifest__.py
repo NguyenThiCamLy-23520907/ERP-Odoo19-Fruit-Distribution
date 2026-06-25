@@ -1,0 +1,26 @@
+{
+    "name": "Fruit Fresh Operations",
+    "version": "1.0",
+    "summary": "QC, FEFO, Wastage and Daily Closing for fresh fruit ERP",
+    "category": "Inventory",
+    "author": "ERP Student Team",
+    "depends": [
+        "stock",
+        "product",
+        "purchase",
+        "sale_management",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/menu.xml",
+        "views/stock_lot_views.xml",
+        "views/stock_picking_views.xml",
+        "views/fruit_qc_check_views.xml",
+        "views/fruit_wastage_log_views.xml",
+        "views/fefo_suggestion_views.xml",
+        "views/fruit_daily_closing_views.xml",
+    ],
+    "installable": True,
+    "application": True,
+    "license": "LGPL-3",
+}

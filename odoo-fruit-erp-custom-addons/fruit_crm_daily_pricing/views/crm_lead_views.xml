@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_lead_form_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.market</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//header" position="inside">
+                <button name="sync_market_price_from_github"
+                        type="object"
+                        string="Sync Market Price"
+                        class="btn-primary"/>
+                        
+                <button name="restore_previous_prices"
+                        type="object"
+                        string="Restore Prices"
+                        class="btn-secondary"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Fruit Market Info" name="fruit_market_info">
+                    <field name="fruit_market_info_ids" widget="one2many"/>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

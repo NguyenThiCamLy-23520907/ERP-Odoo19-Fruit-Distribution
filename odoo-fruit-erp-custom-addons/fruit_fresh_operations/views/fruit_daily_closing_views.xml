@@ -1,0 +1,102 @@
+<odoo>
+    <!-- Daily Fruit Closing Form View -->
+    <record id="view_fruit_daily_closing_form" model="ir.ui.view">
+        <field name="name">fruit.daily.closing.report.form</field>
+        <field name="model">fruit.daily.closing.report</field>
+        <field name="arch" type="xml">
+            <form string="Daily Fruit Closing Report">
+                <header>
+                    <button name="action_compute_report"
+                            type="object"
+                            string="Compute Report"
+                            class="btn-primary"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group string="Report Information">
+                            <field name="name"/>
+                            <field name="report_date"/>
+                            <field name="location_id"/>
+                        </group>
+
+                        <group string="Lot Alerts">
+                            <field name="red_lot_count" readonly="1"/>
+                            <field name="yellow_lot_count" readonly="1"/>
+                            <field name="expired_lot_count" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Inventory Summary">
+                            <field name="receipt_qty"/>
+                            <field name="delivery_qty"/>
+                            <field name="wastage_qty" readonly="1"/>
+                            <field name="closing_stock_qty" readonly="1"/>
+                        </group>
+
+                        <group string="Financial Summary">
+                            <field name="sales_amount"/>
+                            <field name="estimated_cogs"/>
+                            <field name="wastage_amount" readonly="1"/>
+                            <field name="gross_profit" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Daily Fruit Closing List View -->
+    <record id="view_fruit_daily_closing_tree" model="ir.ui.view">
+        <field name="name">fruit.daily.closing.report.tree</field>
+        <field name="model">fruit.daily.closing.report</field>
+        <field name="arch" type="xml">
+            <list string="Daily Fruit Closing Reports">
+                <field name="name"/>
+                <field name="report_date"/>
+                <field name="location_id"/>
+                <field name="receipt_qty"/>
+                <field name="delivery_qty"/>
+                <field name="wastage_qty"/>
+                <field name="closing_stock_qty"/>
+                <field name="sales_amount"/>
+                <field name="estimated_cogs"/>
+                <field name="wastage_amount"/>
+                <field name="gross_profit"/>
+                <field name="red_lot_count"/>
+                <field name="yellow_lot_count"/>
+                <field name="expired_lot_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Daily Fruit Closing Action -->
+    <record id="action_fruit_daily_closing" model="ir.actions.act_window">
+        <field name="name">Daily Fruit Closing</field>
+        <field name="res_model">fruit.daily.closing.report</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a daily closing report for fruit operations.
+            </p>
+            <p>
+                This report summarizes receipt, delivery, wastage, closing stock,
+                estimated sales, estimated COGS, gross profit and FEFO lot alerts.
+            </p>
+        </field>
+    </record>
+
+    <!-- Daily Fruit Closing Menu -->
+    <menuitem id="menu_fruit_daily_closing"
+              name="Daily Fruit Closing"
+              parent="menu_fruit_operations_root"
+              action="action_fruit_daily_closing"
+              sequence="50"/>
+</odoo>

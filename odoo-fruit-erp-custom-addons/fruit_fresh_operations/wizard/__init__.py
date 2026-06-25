@@ -1,0 +1,1 @@
+from . import fefo_suggestion_wizard

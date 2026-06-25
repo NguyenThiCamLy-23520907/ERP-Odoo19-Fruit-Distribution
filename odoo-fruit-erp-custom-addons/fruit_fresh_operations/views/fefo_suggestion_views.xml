@@ -1,0 +1,61 @@
+<odoo>
+    <!-- FEFO Suggestion Wizard Form View -->
+    <record id="view_fruit_fefo_suggestion_wizard_form" model="ir.ui.view">
+        <field name="name">fruit.fefo.suggestion.wizard.form</field>
+        <field name="model">fruit.fefo.suggestion.wizard</field>
+        <field name="arch" type="xml">
+            <form string="FEFO Suggestion Wizard">
+                <sheet>
+                    <group>
+                        <group string="Yêu cầu xuất kho">
+                            <field name="product_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="location_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group string="Sản lượng cần">
+                            <field name="required_qty"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_compute_suggestion"
+                                string="Compute Suggestion"
+                                type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+
+                    <notebook>
+                        <page string="Suggested Lots (Lô gợi ý)">
+                            <field name="line_ids" readonly="1">
+                                <list>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="lot_id"/>
+                                    <field name="available_qty"/>
+                                    <field name="suggested_qty"/>
+                                    <field name="expiry_date"/>
+                                    <field name="days_to_expiry"/>
+                                    <field name="alert_level" decoration-danger="alert_level == 'red'" decoration-warning="alert_level == 'yellow'" decoration-success="alert_level == 'green'" decoration-muted="alert_level == 'expired'"/>
+                                    <field name="reason"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FEFO Suggestion Action -->
+    <record id="action_fruit_fefo_suggestion" model="ir.actions.act_window">
+        <field name="name">FEFO Suggestion</field>
+        <field name="res_model">fruit.fefo.suggestion.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- FEFO Suggestion Menu -->
+    <menuitem id="menu_fefo_suggestion"
+              name="FEFO Suggestion"
+              parent="menu_fruit_operations_root"
+              action="action_fruit_fefo_suggestion"
+              sequence="30"/>
+</odoo>
