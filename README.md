@@ -1,4 +1,4 @@
-# 🍎 Đồ án triển khai hệ thống ERP cho doanh nghiệp phân phối trái cây bằng Odoo 19
+# Đồ án triển khai hệ thống ERP cho doanh nghiệp phân phối trái cây bằng Odoo 19
 
 ## Giới thiệu
 
